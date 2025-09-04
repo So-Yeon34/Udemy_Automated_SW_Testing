@@ -2,6 +2,7 @@
 Terminal command
 python3 -m unittest tests.unit.post_test → runs via unittest module (handles imports and test discovery)
 python3 -m tests.unit.post_test → runs the file directly (may cause import issues)
+python3 -m unittest -v tests.unit.post_test
 '''
 
 from unittest import TestCase # "unittest" is a built-in testing framework in Python
@@ -22,3 +23,9 @@ class PostTest(TestCase): # TestCase is a class provided by unittest
         # Verify that the 'content' attribute is correctly assigned.
         # This ensures that the Post constructor stores the content as expected.
         self.assertEqual('Test Content', p.content) 
+
+    def test_json(self):
+        p = Post('Test', 'Test Content') # create a Post object
+
+        expected = {'title': 'Test', 'content' : 'Test Content'}
+        self.assertDictEqual(expected, p.json())
