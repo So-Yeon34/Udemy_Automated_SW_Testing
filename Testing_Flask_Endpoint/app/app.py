@@ -1,6 +1,15 @@
 from flask import Flask, jsonify
 
+# app = Flask(__name__)
+# → Creates a Flask application object.
+#   The __name__ variable tells Flask where to look for resources
+#   like templates and static files.
 app = Flask(__name__)
+# @app.route('/')
+# → Maps the URL path '/' (root) to the function below.
+#   When a user visits http://localhost:5000/ in the browser,
+#   this function will be executed and its return value will be sent as the response.
+
 @app.route('/') # http://www.mysite.com/blog
 
 def home():
