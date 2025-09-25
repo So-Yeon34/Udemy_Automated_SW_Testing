@@ -28,7 +28,7 @@ class Item(Resource):
 
         data = Item.parser.parse_args()
 
-        item = ItemModel(name, **data)
+        item = ItemModel(name, **data) #**data unpacks the dictionary and passes its key-value pairs as the remaining keyword
 
         try:
             item.save_to_db()
