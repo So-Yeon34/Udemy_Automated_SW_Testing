@@ -10,6 +10,12 @@ class StoreModel(db.Model):
     items = db.relationship(
         'ItemModel',
         back_populates = 'store',   # Connected with ItemModel.store
+
+        # Returns a query object instead of a list.
+        # - With "dynamic", store.items is not loaded immediately.
+        # - You can run store.items.all(), store.items.count(),
+        #   or store.items.filter_by(...) to query only when needed.
+        # - Useful when a store has many items (avoids loading all at once).
         lazy='dynamic'
     )
 
@@ -17,7 +23,7 @@ class StoreModel(db.Model):
         self.name = name
 
     def json(self):
-        return {'name': self.name, 'items': [item.json() for item in self.items.all()]}
+        return {'name': self.name, 'items': [item.json() for item in self.items.all()]} #fetched item
 
     @classmethod
     def find_by_name(cls, name):
