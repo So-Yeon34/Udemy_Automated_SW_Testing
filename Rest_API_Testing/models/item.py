@@ -9,7 +9,14 @@ class ItemModel(db.Model):
     price = db.Column(db.Float(precision=2))
 
     store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
-    store = db.relationship('StoreModel')
+    # Define the reverse side of the relationship
+    # - back_populates="items" links this side to StoreModel.items
+    # - Without back_populates, SQLAlchemy thinks both relationships
+    #   manage the same column (store_id) independently and raises a warning
+    store = db.relationship(
+        'StoreModel',
+        back_populates = 'items'    # Connected with StoreModel.items
+    )
 
     def __init__(self, name, price, store_id):
         self.name = name
