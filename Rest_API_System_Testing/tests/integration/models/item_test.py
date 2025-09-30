@@ -1,5 +1,5 @@
 from models.item import ItemModel
-from tests.integration.integration_base_test import BaseTest
+from tests.integration_base_test import BaseTest
 from models.store import StoreModel
 
 

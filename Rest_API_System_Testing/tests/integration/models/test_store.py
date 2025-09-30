@@ -1,6 +1,6 @@
 from models.store import StoreModel
 from models.item import ItemModel
-from tests.integration.integration_base_test import BaseTest
+from tests.integration_base_test import BaseTest
 
 class StoreTest(BaseTest):
     def test_creation_store_items_empty(self):
