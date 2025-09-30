@@ -1,8 +1,8 @@
+from tests.unit.unit_base_test import UnitBaseTest
 from models.item import ItemModel
-from tests.base_test import BaseTest
 
 
-class ItemTest(BaseTest):
+class ItemTest(UnitBaseTest):
     def test_create_item(self):
         item = ItemModel('test', 19.99, 1)
 
@@ -10,9 +10,9 @@ class ItemTest(BaseTest):
                          "The name of the item after creation does not equal the constructor argument.")
         self.assertEqual(item.price, 19.99,
                          "The price of the item after creation does not equal the constructor argument.")
-        self.assertEqual(item.store_id, 1,
-                         "The store_id of the item after creation does not equal the constructor argument.")
-        self.assertIsNone(item.store, "The item's store was not None even though the store was not created.")
+
+        self.assertEqual(item.store_id, 1)
+        self.assertIsNone(item.store)
 
     def test_item_json(self):
         item = ItemModel('test', 19.99, 1)
